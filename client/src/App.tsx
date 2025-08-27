@@ -1,33 +1,39 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import { mastraClient } from "./lib/mastra";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tweet, setTweet] = useState<string>('')
+  const [topic, setTopic] = useState<string>('')
+  
+  const handleClick = async () => {
+    const workflow = mastraClient.getWorkflow("generateTweetWorkflow")
+    const run = await workflow.createRunAsync()
+
+    const result = await workflow.startAsync({
+      runId: run.runId,
+      inputData: {
+        topic: topic
+      }
+    })
+
+    const x = result.steps['generateTweet']
+    setTweet(x.output.tweet)
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div>
+    <input 
+      type="text" 
+      value={topic} 
+      onChange={(e) => setTopic(e.target.value)}
+      placeholder="Enter topic"
+    />
+    <button onClick={handleClick}>Click me</button>
+    <p>{tweet}</p>
+    </div>
     </>
   )
 }
