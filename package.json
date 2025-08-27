@@ -3,7 +3,6 @@
   "private": true,
   "scripts": {
     "dev": "pnpm --parallel dev",
-    "build": "pnpm --recursive build",
-    "install:all": "pnpm install"
+    "build": "pnpm --recursive build"
   }
 }
