@@ -23,7 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-mastra
+.mastra
 .env
 .env.development
 *.db
