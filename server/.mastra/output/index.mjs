@@ -10,7 +10,7 @@ import { z } from 'zod';
 import { openai as openai$1 } from '@ai-sdk/openai';
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
-import { weatherTool } from './tools/0d70482f-81c8-43a4-972b-e49885e86609.mjs';
+import { weatherTool } from './tools/34dc44f6-2af4-4f5b-9540-4a42c50039cb.mjs';
 import crypto$1, { randomUUID } from 'crypto';
 import { readFile } from 'fs/promises';
 import { join } from 'path/posix';

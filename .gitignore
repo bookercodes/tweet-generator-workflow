@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+mastra
+.env
+.env.development
+*.db
+*.db-*
+output.txt
